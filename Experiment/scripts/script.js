@@ -899,11 +899,12 @@ setupQuestionnaires().then(() => {
       on_finish: function() {
           // Extract and submit result data
           var result = jsPsych.data.get().json();		  
-          jatos.submitResultData(result, function() {
-              document.write('<div id="endscreen" class="endscreen" style="width:1000px"><div class="endscreen" style="text-align:center; border:0px solid; padding:10px; font-size:120%; width:800px; float:right"><p><br><br><br>' +
-              finish_msg +
-              '</p></div></div>');
-          });
+/*        jatos.submitResultData(result, function() {
+          document.write('<div id="endscreen" class="endscreen" style="width:1000px"><div class="endscreen" style="text-align:center; border:0px solid; padding:10px; font-size:120%; width:800px; float:right"><p><br><br><br>' +
+          finish_msg +
+          '</p></div></div>')
+        });*/
       }
+
   });
 });
