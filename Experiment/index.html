@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<title>Planets and Pirates</title>
-  	<script src="jspsych-6.1.0/jspsych.js"></script>
-  	<link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+<head>
+    <title>Planets and Pirates</title>
+    <!-- Stylesheet -->
+    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css">
+
+    <!-- JS scripts -->
+    <!-- Core jsPsych library -->
+    <script src="jspsych-6.1.0/jspsych.js"></script>
+
+    <!-- jsPsych plugins -->
     <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
-  	<script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-survey-html-form.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-survey-multi-choice.js"></script>
-  	<script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
-  	<script src="jspsych-6.1.0/plugins/planet-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/planet-response.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-valence-check-3.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-valence-check-6.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-inference-check-1.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-inference-check-4.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-survey-likert.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
-    <!--<script src="jatos.js"></script>-->
-  </head>
+    
+    <!-- Uncomment if using JATOS -->
+    <!-- <script src="jatos.js"></script> -->
+</head>
   <body>
 
   </body>
@@ -478,41 +486,33 @@
   var timeline = [];
   var block6loop = []
 
-/*
   // force full screen
-  timeline.push(
-    {
-      type: 'fullscreen',
-      fullscreen_mode: true
-    }
-  );
+timeline.push({
+  type: 'fullscreen',
+  fullscreen_mode: true
+});
 
-  // info statement and consent
-  var consent_block = {
-		type: 'html-button-response',
-		stimulus: consent_text,
-		choices: ['I consent to participate'],
-    data: {
-      phase: 'consent'
-    }
-	}
-	timeline.push(consent_block);
+// info statement and consent
+var consent_block = {
+  type: 'html-button-response',
+  stimulus: consent_text,
+  choices: ['I consent to participate'],
+  data: {
+    phase: 'consent'
+  }
+};
+timeline.push(consent_block);
 
-  // demographics
-  var demographics_block = {
-    type: 'survey-html-form',
-    preamble: '<p><b>Please fill in your demographic details</b></p>',
-    html: demo_text,
-    data: {
-      phase: 'demographics'
-    }
-  };
-  timeline.push(demographics_block);
- */
-  //----------------------------------------------------------------------------
-  /* introloop:
-  - includes instructions, instruction check, and splash screen
-  - loops continuously until participant gets questions correct */
+// demographics
+var demographics_block = {
+  type: 'survey-html-form',
+  preamble: '<p><b>Please fill in your demographic details</b></p>',
+  html: demo_text,
+  data: {
+    phase: 'demographics'
+  }
+};
+timeline.push(demographics_block);
 
   // define general instructions
   var gen_ins_block = {
