@@ -2,8 +2,7 @@
 console.log("Script started");
 
 // Import functions from psychometrics.js
-//import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
-
+import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
 
 /* Experiment Parameters */
 
@@ -880,6 +879,10 @@ timeline.push(demographics_block);
         nBlocks_p2: nBlocks_p2
     });
 
+    
+
+    console.log("Pre load");
+
 // Load and create questionnaire blocks dynamically
 async function setupQuestionnaires() {
   const questionnaires = ['dass', 'bis', 'aor', 'bisbas', 'ipip'];
@@ -889,6 +892,9 @@ async function setupQuestionnaires() {
       timeline.push(block);
   }
 }
+
+
+console.log("Post load, pre setup");
 
 // Call setupQuestionnaires and then initialize the experiment
 setupQuestionnaires().then(() => {
@@ -904,6 +910,7 @@ setupQuestionnaires().then(() => {
           finish_msg +
           '</p></div></div>')
         });*/
+        console.log("post setup started");
       }
 
   });
