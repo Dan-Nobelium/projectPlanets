@@ -1,15 +1,16 @@
-Planets Task
+# Planets Task
 
 Planets Task is a JavaScript-based application for conducting studies related to decision-making and probability. In this task, participants interact with a simulated environment where they can click on planets to receive probabilistic rewards and encounter various events like pirate attacks.
-Installation
+
+## Installation
 
 This project does not require any specific package manager for installation. Simply clone the repository from the code repo and include the JavaScript files in your project as needed.
-Usage
+
+## Usage
 
 Here's how you can use the Planets Task in your project:
 
-javascript
-
+```javascript
 // Include the planet-response.js or planet-responseELife.js in your HTML file
 // Configure the parameters as per your study's requirement
 
@@ -20,13 +21,11 @@ var config = {
     stimulus_width: 200, // width of planet images
     // ... other parameters
 };
+```
 
-// Initialize the task with the configuration
-initPlanetsTask(config);
+## Parameters
 
-Parameters
-
-The planet-response plugin includes several parameters for customization:
+Parameters for the planet-response plugin:
 
  - `stimulus` - Image files for the planets. Img file array. Default: `undefined`
  - `stimulus_height` - Height of image file (in px). Integer. Default: `null`
@@ -63,7 +62,7 @@ The planet-response plugin includes several parameters for customization:
 
 Contributing
 
-If you have suggestions or improvements, please open an issue first to discuss what you would like to change. Ensure any pull requests update the necessary documentation and adhere to the existing code structure.
+Contributions to the Planets Task project are welcome. If you have suggestions or improvements, please open an issue first to discuss what you would like to change. Ensure any pull requests update the necessary documentation and adhere to the existing code structure.
 Authors
 
     Jessica C. Lee
@@ -71,4 +70,4 @@ Authors
 
 License
 
-This project's License is currently unknown.
+This projects license is indeterminite, please open an issue to learn more.
