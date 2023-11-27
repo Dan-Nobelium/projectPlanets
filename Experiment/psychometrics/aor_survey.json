@@ -16,6 +16,7 @@
       "I usually blame myself when things go wrong.",
       "If I get what I want in life it will only be through hard work."
     ],
-    "labels": ["strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree"]
+    "labels": ["strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree"],
+    "catch_question_indices": [7]
   }
   

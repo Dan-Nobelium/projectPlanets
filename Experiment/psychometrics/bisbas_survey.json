@@ -17,6 +17,7 @@
       "It would excite me to win a contest.",
       "I worry about making mistakes."
     ],
-    "labels": ["not true at all for me", "1", "2", "very true for me"]
+    "labels": ["not true at all for me", "1", "2", "very true for me"],
+    "catch_question_indices": [9]
   }
   
