@@ -1,32 +1,13 @@
-Planets Task
+# planets-task
 
-Planets Task is a JavaScript-based application for conducting studies related to decision-making and probability. In this task, participants interact with a simulated environment where they can click on planets to receive probabilistic rewards and encounter various events like pirate attacks.
-Installation
+Authors: Jessica C. Lee & Shi Xian Liew
 
-This project does not require any specific package manager for installation. Simply clone the repository from the code repo and include the JavaScript files in your project as needed.
-Usage
+Code repo for the planets + pirates task. Participants can click on two planets to receive probabilistic rewards. Clicking on a planet sometimes results in a ship (CS) appearing that either leads to a pirate attack (+) or nothing (-).
 
-Here's how you can use the Planets Task in your project:
+For the specific plugin used in the studies reported in eLife, use planet-responseELife.js. planet-response.js will be
+used for further updates.
 
-javascript
-
-// Include the planet-response.js or planet-responseELife.js in your HTML file
-// Configure the parameters as per your study's requirement
-
-// Example configuration:
-var config = {
-    stimulus: ['img/planet1.png', 'img/planet2.png'], // array of planet image files
-    stimulus_height: 200, // height of planet images
-    stimulus_width: 200, // width of planet images
-    // ... other parameters
-};
-
-// Initialize the task with the configuration
-initPlanetsTask(config);
-
-Parameters
-
-The planet-response plugin includes several parameters for customization:
+Parameters for the planet-response plugin:
 
  - `stimulus` - Image files for the planets. Img file array. Default: `undefined`
  - `stimulus_height` - Height of image file (in px). Integer. Default: `null`
@@ -60,15 +41,3 @@ The planet-response plugin includes several parameters for customization:
  - `shield_cost_toggle` - Toggle shield activation cost. Boolean. Default: `true`
  - `shield_cost_amount` - Shield activation cost in points. Integer. Default: 50
  - `cursor` - Cursor image files, [default cursor, mousedown cursor]. Img file array. Default: `['img/cursor.png','img/cursordark.png']`
-
-Contributing
-
-If you have suggestions or improvements, please open an issue first to discuss what you would like to change. Ensure any pull requests update the necessary documentation and adhere to the existing code structure.
-Authors
-
-    Jessica C. Lee
-    Shi Xian Liew
-
-License
-
-This project's License is currently unknown.
