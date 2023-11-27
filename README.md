@@ -23,44 +23,44 @@ var config = {
 };
 ```
 
-## Parameters
+### Implemented Parameters (explicitly set and utilized):
+- `stimulus`: Array[String]. Default: undefined. Paths to image files for the planets.
+- `stimulus_select`: String. Default: undefined. Path to the image used for stimulus selection on mouseover.
+- `prompt`: Array[String]. Default: ['Planet A', 'Planet B']. Text labels for each choice.
+- `block_duration`: Integer (ms). Default: 240*1000. Duration of each continuous block.
+- `feedback_duration`: Integer (ms). Default: 3000. Duration of feedback for trade and ship.
+- `probability_trade`: Array[Integer]. Default: [0.5, 0.5]. Probability of successful trade for each planet.
+- `show_ship`: Boolean. Default: false. Toggle for ship appearance in each block.
+- `show_ship_delay`: Integer (ms). Default: 2000. Delay between trade attempt and ship appearance.
+- `probability_ship`: Array[Float]. Default: [0.2, 0.2]. Probability of ship appearing after trade attempts.
+- `ship_stimulus`: Array[String]. Default: null. Image files for each ship.
 
-Parameters for the planet-response plugin:
+### Implicit Parameters (Not explicitly set, may be used implicitly or with default values):
+- `stimulus_height`: Integer (px). Default: null. Height of the planet image.
+- `stimulus_width`: Integer (px). Default: null. Width of the planet image.
+- `maintain-aspect-ratio`: Boolean. Default: true. Whether to maintain the aspect ratio of the image.
+- `show_total_points`: Boolean. Default: true. Toggle to show total points on the screen.
+- `ship_space`: Integer (px). Default: 300. Space between stimuli and the width of the ship div.
+- `end_trial_wait`: Integer (ms). Default: 1000. Duration before the block ends after the final action.
+- `signal_time`: Integer (ms). Default: 2000. Duration of the trade signal before reward delivery.
+- `signal_height`: Integer (px). Default: 100. Height of the signal image.
+- `signal_width`: Integer (px). Default: 80. Width of the signal image.
+- `signal_padding`: Integer (px). Default: 10. Padding around the signal image.
+- `rewards`: Array[Integer]. Default: [100, 100]. Points rewarded for each successful trade.
+- `ship_height`: Integer (px). Default: 200. Height of the ship image.
+- `ship_width`: Integer (px). Default: 300. Width of the ship image.
+- `ship_attack_time`: Integer (ms). Default: 400. Time between ship appearance and encounter.
+- `ship_attack_damage`: Float. Default: 0.2. Points lost in an undefended ship attack.
+- `ship_hostile_idx`: Integer. Default: 0. Index of the hostile ship (0 or 1).
+- `shield_charging_time`: Integer (ms). Default: 2000. Time required for the shield to charge.
+- `probability_shield`: Float. Default: 0.5. Probability of shield availability after charging.
+- `shield_prevent_trading`: Boolean. Default: true. Prevents trading when the shield is active.
+- `shield_cost_toggle`: Boolean. Default: true. Toggles the activation cost for the shield.
+- `shield_cost_amount`: Integer. Default: 50. Cost in points to activate the shield.
+- `cursor`: Array[String]. Default: ['img/cursor.png','img/cursordark.png']. Paths to cursor images for default and mousedown states.
 
- - `stimulus` - Image files for the planets. Img file array. Default: `undefined`
- - `stimulus_height` - Height of image file (in px). Integer. Default: `null`
- - `stimulus_width` - Width of image file (in px). Integer. Default: `null`
- - `maintain-aspect-ratio` - Maintain aspect ratio of image. Boolean. Default: `true`
- - `stimulus_select` - Stimulus selection image on mouseover. Img file. Default: `undefined`
- - `prompt` - Text labels for each choice. String array. Default: `['Planet A','Planet B']`
- - `show_total_points` - Toggle presentation of total points on the top of the screen. Boolean. Default: `true`
- - `ship_space` - Space between stimuli (and consequently the width of ship div) in px. Integer. Default: `300`
- - `block_duration` - Duration of each continuous block in ms. Integer. Default: `240*1000`
- - `feedback_duration` - Duration of trade(planet) and ship feedback. Integer. Default: `3000`
- - `end_trial_wait` - How long before the block ends after some final action, in ms. Integer. Default: `1000`
- - `signal_time` - Duration of trade signal before reward delivery in ms. Integer. Default: `2000`
- - `signal_height` - Height of signal image in px. Integer. Default: `100`
- - `signal_width` - Width of signal image in px. Integer. Default: `80`
- - `signal_padding` - Blank space (padding) around signal image. Integer. Default: `10`
- - `probability_trade` - Probability of successful trade for each planet. Integer array. Default: `[.5, .5]`
- - `rewards` - Rewards for each successful trade for each planet in points. Integer array. Default: `[100, 100]`
- - `show_ship` - Toggle ship appearance on this block. Boolean. Default: `false`
- - `show_ship_delay` - Duration between trade attempt mouseclick and appearance of ship in ms. Integer. Default: `2000`
- - `probability_ship` - Probability of ship appearing after trade attempt on respective planet. Float array. Default: `[.2, .2]`
- - `ship_stimulus` - Image files for each ship. Img file array. Default: `null`
- - `ship_height` - Height of ship image in px. Integer. Default: `200`
- - `ship_width` - Width of ship image in px. Integer. Default: `300`
- - `ship_attack_time` - Time between ship appearance and ship encounter (attack or passing by) in ms. Integer. Default: `400`
- - `ship_attack_damage` - Proportion of total points an undefended ship attack removes. Float. Default: `.2`
- - `ship_hostile_idx` - Specifies index of hostile ship, can be 0 (ship I) or 1 (ship II). Integer. Default: `0`
- - `shield_charging_time` - Time it takes for shield to charge in ms. Integer. Default: `2000`
- - `probability_shield` - Probability of shield availability after charging. Float. Default: `.5`
- - `shield_prevent_trading` - Toggle prevention of trading when shield is active. Boolean. Default: `true`
- - `shield_cost_toggle` - Toggle shield activation cost. Boolean. Default: `true`
- - `shield_cost_amount` - Shield activation cost in points. Integer. Default: 50
- - `cursor` - Cursor image files, [default cursor, mousedown cursor]. Img file array. Default: `['img/cursor.png','img/cursordark.png']`
 
-Contributing
+### Contribution
 
 Contributions to the Planets Task project are welcome. If you have suggestions or improvements, please open an issue first to discuss what you would like to change. Ensure any pull requests update the necessary documentation and adhere to the existing code structure.
 Authors
@@ -68,6 +68,6 @@ Authors
     Jessica C. Lee
     Shi Xian Liew
 
-License
+### License
 
 This projects license is indeterminite, please open an issue to learn more.
