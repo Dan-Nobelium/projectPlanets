@@ -1,7 +1,14 @@
 async function loadQuestionnaire(fileName) {
-    const response = await fetch(`psychometrics/${fileName}`);
-    const data = await response.json();
-    return data;
+    console.log(`Attempting to load questionnaire from ${fileName}`);
+    try {
+        const response = await fetch(fileName);
+        const data = await response.json();
+        console.log(`Loaded data for ${fileName}:`, data);
+        return data;
+    } catch (error) {
+        console.error(`Error loading ${fileName}:`, error);
+        return null; // or handle the error as needed
+    }
 }
 
 function createQuestionBlock(questionnaireData) {
