@@ -1,0 +1,22 @@
+{
+    "title": "DASS-21",
+    "prompt": "Please rate how much each statement applied to you over the past week. There are no right or wrong answers.",
+    "items": [
+      "I was aware of dryness of my mouth",
+      "I couldn’t seem to experience any positive feeling at all",
+      "I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion)",
+      "I found it difficult to work up the initiative to do things",
+      "I experienced trembling (e.g., in the hands)",
+      "I was worried about situations in which I might panic and make a fool of myself",
+      "I felt that I had nothing to look forward to",
+      "I felt down-hearted and blue",
+      "I felt I was close to panic",
+      "I was unable to become enthusiastic about anything",
+      "I felt I wasn’t worth much as a person",
+      "I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat)",
+      "I felt scared without any good reason",
+      "I felt that life was meaningless"
+    ],
+    "labels": ["0 (never)", "1 (sometimes)", "2 (often)", "3 (almost always)"]
+  }
+  

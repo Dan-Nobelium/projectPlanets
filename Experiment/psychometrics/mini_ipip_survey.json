@@ -1,0 +1,28 @@
+{
+    "title": "Mini IPIP",
+    "prompt": "Please rate how well the following statements describe how you generally are, relative to other people you know:",
+    "items": [
+      "I am the life of the party.",
+      "I sympathize with others’ feelings.",
+      "I get chores done right away.",
+      "I have frequent mood swings.",
+      "I have a vivid imagination.",
+      "I don’t talk a lot.",
+      "I am not interested in other people’s problems.",
+      "I often forget to put things back in their proper place.",
+      "I am relaxed most of the time.",
+      "I am not interested in abstract ideas.",
+      "I talk to a lot of different people at parties.",
+      "I feel others’ emotions.",
+      "I like order.",
+      "I get upset easily.",
+      "I have difficulty understanding abstract ideas.",
+      "I keep in the background.",
+      "I am not really interested in others.",
+      "I make a mess of things.",
+      "I seldom feel blue.",
+      "I do not have a good imagination."
+    ],
+    "labels": ["very inaccurate", "moderately inaccurate", "neither inaccurate nor accurate", "moderately accurate", "very accurate"]
+  }
+  

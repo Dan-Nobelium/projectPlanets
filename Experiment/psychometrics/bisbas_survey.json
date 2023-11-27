@@ -1,0 +1,22 @@
+{
+    "title": "BIS/BAS",
+    "prompt": "Please rate how well the following statements describe how you generally are:",
+    "items": [
+      "I go out of my way to get things I want.",
+      "When I’m doing well at something, I love to keep at it.",
+      "When I get something I want, I feel excited and energized.",
+      "Criticism or scolding hurts me quite a bit.",
+      "When I want something I usually go all-out to get it.",
+      "I will often do things for no other reason than that they might be fun.",
+      "If I see a chance to get something I want, I move on it right away.",
+      "I feel pretty worried or upset when I think or know somebody is angry at me.",
+      "I often act on the spur of the moment.",
+      "Select three, very true for me, for this question.",
+      "If I think something unpleasant is going to happen I usually get pretty worked up.",
+      "I crave excitement and new sensations.",
+      "It would excite me to win a contest.",
+      "I worry about making mistakes."
+    ],
+    "labels": ["not true at all for me", "1", "2", "very true for me"]
+  }
+  

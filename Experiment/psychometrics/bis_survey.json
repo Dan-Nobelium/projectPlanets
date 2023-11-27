@@ -1,0 +1,16 @@
+{
+    "title": "Brief BIS-11",
+    "prompt": "Please rate how well the following statements describe how you generally are:",
+    "items": [
+      "I plan tasks carefully.",
+      "I do things without thinking.",
+      "I don’t pay attention.",
+      "I am self-controlled.",
+      "I concentrate easily.",
+      "I am a careful thinker.",
+      "I say things without thinking.",
+      "I act on the spur of the moment."
+    ],
+    "labels": ["0 (rarely)", "1 (sometimes)", "2 (often)", "3 (almost always)"]
+  }
+  

@@ -1,0 +1,21 @@
+{
+    "title": "Attribution of Responsibility",
+    "prompt": "Please rate how much you agree with the following statements:",
+    "items": [
+      "My misfortunes have resulted mainly from the mistakes I’ve made.",
+      "In my case getting what I want has had little or nothing to do with luck.",
+      "When people have not liked me I have usually felt there was something wrong with me.",
+      "I have found that success in anything is built on hard work.",
+      "When relationships with others have gone wrong I have usually felt that I was to blame.",
+      "Success seems to me to have been largely a matter of having been in the right place at the right time.",
+      "When I have been criticized it has usually been deserved.",
+      "Select the left-most option, strongly disagree, for this question.",
+      "Most of my successes have happened without my really trying.",
+      "For most of my misfortunes and disappointments I have nobody to blame but myself.",
+      "It will be largely a matter of luck if I succeed in life.",
+      "I usually blame myself when things go wrong.",
+      "If I get what I want in life it will only be through hard work."
+    ],
+    "labels": ["strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree"]
+  }
+  
