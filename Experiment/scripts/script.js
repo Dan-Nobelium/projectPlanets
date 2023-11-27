@@ -1,3 +1,8 @@
+
+// Import functions from psychometrics.js
+import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
+
+
 /* Experiment Parameters */
 
 // Group and Sample Selection
@@ -50,51 +55,6 @@ var images = [
   //----------------------------------------------------------------------------
   /* instructions text */
 
-  consent_text = [
-    '<p>Before you begin, please read the information sheet carefully (you can download the pdf <a href="https://jessicaleephd.files.wordpress.com/2020/07/pis_sona_3385.pdf" target="_blank">here</a>)</p>' +
-    '<br>' +
-    '<p align="center"><b>PARTICIPANT CONSENT</b></p>' +
-    '<center><img src="./img/PIS_1.jpg"></center>' +
-    '<center><img src="./img/PIS_2.jpg"></center>' +
-    '<center><img src="./img/consent.jpg"></center>' +
-    'By continuing, you are making a decision whether or not to participate. <br>  Clicking the button below indicates that, having read the information provided on the participant information sheet, you consent to the above.' +
-    '<br></p>'
-  ];
-
-  demo_text = [
-    '<p> Gender: ' +
-    '<input type="radio" name="gender" value="male" required/> Male &nbsp; ' +
-    '<input type="radio" name="gender" value="female" required/> Female &nbsp;' +
-    '<input type="radio" name="gender" value="other" required/> Other<br>' + '<br>' +
-    '<p> Age: <input name="age" type="text" required/> </p>' + '<br>' +
-    '<p> Native language: <input name="language" type="text" required/> </p>' + '<br>'
-  ];
-
-  if (sample === "MTurk") {
-    var MTurk_insert = [
-      '<p>If anything goes wrong during the experiment, please take a screenshot and notify the requester. Do <b>not</b> press the BACK button or quit out of the program. This will make it hard for you to get paid.</p>' +
-      '<p>If you complete the task, you will get your payment no matter what. Please take your time and think about your predictions and judgements seriously. </p>'
-    ]
-  } else {
-    var MTurk_insert = '';
-  }
-
-  var ins = {};
-
-  ins.pretrain1 = [
-    '<p>WELCOME TO THE EXPERIMENT! </p>' +
-    '<p>Throughout the experiment, please read all instructions <b>carefully</b> and click on the buttons to go forward or back. You may need to scroll down on some pages. </p>' +
-    MTurk_insert +
-    '<p>Please <b>do not</b> hit refresh or the back button on your browser as you can only do the experiment ONCE.</p>' +
-    '<p>Please complete the experiment in ONE sitting in FULL SCREEN mode.</p>'
-  ];
-
-  ins.pretrain2 = [
-    '<p>In this experiment you will be playing a game over 6 blocks. </p>' +
-    '<p>In this game, you are an intergalactic trader in space. You will be situated between two planets that you can trade with. You can send a signal to each planet by clicking on them. Sometimes locals on these planets will receive the signal and be willing to trade. Each successful trade will give you points. </p>' +
-    '<p>Your goal is to have as many points as possible. </p>'
-    // '<p><b>Note:</b> Whatever you earn in-game will be converted into real money for you at the end of the experiment. The more you earn in-game, the more you make in real life. You can earn more points by trading with both planets. </p>'
-  ];
 
   ins.pretrain3 = [
     '<p>You can click on each of the planets as many times as you like. Just remember, the aim is to get as many points as possible! </p>' +
@@ -322,114 +282,6 @@ var images = [
   // open-ended q
   var open_q = 'What is the best approach to trading in this game? Did your strategy change between blocks? Please provide as much detail as possible. ';
 
-  //----------------------------------------------------------------------------
-  /* individual difference questionnaires */
-
-  // DASS
-  var dass = [];
-  dass.prompt = 'Please rate how much each statement applied to you <u>over the past week</u>. There are no right or wrong answers.';
-  dass.items = [
-    'I was aware of dryness of my mouth',
-    'I couldn’t seem to experience any positive feeling at all',
-    'I experienced breathing difficulty (eg. excessively rapid breathing, breathlessness in the absence of physical exertion)',
-    'I found it difficult to work up the initiative to do things',
-    'I experienced trembling (eg. in the hands)',
-    'I was worried about situations in which I might panic and make a fool of myself',
-    'I felt that I had nothing to look forward to',
-    'I felt down-hearted and blue',
-    'I felt I was close to panic',
-    'I was unable to become enthusiastic about anything',
-    'I felt I wasn’t worth much as a person',
-    'I was aware of the action of my heart in the absence of physical exertion (eg. sense of heart rate increase, heart missing a beat)',
-    'I felt scared without any good reason',
-    'I felt that life was meaningless'
-  ];
-  dass.labels = ['0<br>(never)', '1<br>(sometimes)', '2<br>(often)', '3<br> (almost always)'];
-
-  // Brief BIS-11
-  var bis = [];
-  bis.prompt = 'Please rate how well the following statements describe <u>how you generally are</u>:'
-  bis.items = [
-    'I plan tasks carefully.',
-    'I do things without thinking.',
-    'I don’t pay attention.',
-    'I am self-controlled.',
-    'I concentrate easily.',
-    'I am a careful thinker.',
-    'I say things without thinking.',
-    'I act on the spur of the moment.'
-  ];
-  bis.labels = ['0<br>(rarely)', '1<br>(sometimes)', '2<br>(often)', '3<br> (almost always)'];
-
-  // Attribution of Responsibility
-  var aor = [];
-  aor.prompt = 'Please rate how much you agree with the following statements:'
-  aor.items = [
-    'My misfortunes have resulted mainly from the mistakes I’ve made.',
-    'In my case getting what I want has had little or nothing to do with luck.',
-    'When people have not liked me I have usually felt there was something wrong with me.',
-    'I have found that success in anything is built on hard work.',
-    'When relationships with others have gone wrong I have usually felt that I was to blame.',
-    'Success seems to me to have been largely a matter of having been in the right place at the right time.',
-    'When I have been criticized it has usually been deserved.',
-    'Select the left-most option, strongly disagree, for this question.',
-    'Most of my successes have happened without my really trying.',
-    'For most of my misfortunes and disappointments I have nobody to blame but myself.',
-    'It will be largely a matter of luck if I succeed in life.',
-    'I usually blame myself when things go wrong.',
-    'If I get what I want in life it will only be through hard work.'
-  ];
-  aor.labels = ['strongly<br>disagree', 'disagree', 'neither agree <br>nor disagree', 'agree', 'strongly<br>agree'];
-
-  // BIS/BAS
-  var bisbas = [];
-  bisbas.prompt = 'Please rate how well the following statements describe <u>how you generally are</u>:'
-  bisbas.items = [
-    'I go out of my way to get things I want.',
-    'When I’m doing well at something, I love to keep at it.',
-    'When I get something I want, I feel excited and energized.',
-    'Criticism or scolding hurts me quite a bit.',
-    'When I want something I usually go all-out to get it.',
-    'I will often do things for no other reason than that they might be fun.',
-    'If I see a chance to get something I want, I move on it right away.',
-    'I feel pretty worried or upset when I think or know somebody is angry at me.',
-    'I often act on the spur of the moment.',
-    'Select three, very true for me, for this question.',
-    'If I think something unpleasant is going to happen I usually get pretty worked up.',
-    'I crave excitement and new sensations.',
-    'It would excite me to win a contest.',
-    'I worry about making mistakes.'
-  ];
-  bisbas.labels = ['0<br>(not true at all for me)', '1', '2', '3<br>(very true for me)'];
-
-  // Mini IPIP
-  var ipip = [];
-  ipip.prompt = 'Please rate how well the following statements describe <u>how you generally are</u>, relative to other people you know:'
-  ipip.items = [
-    'I am the life of the party.',
-    'I sympathize with others’ feelings',
-    'I get chores done right away.',
-    'I have frequent mood swings.',
-    'I have a vivid imagination.',
-    'I don’t talk a lot.',
-    'I am not interested in other people’s problems.',
-    'I often forget to put things back in their proper place.',
-    'I am relaxed most of the time.',
-    'I am not interested in abstract ideas.',
-    'I talk to a lot of different people at parties.',
-    'I feel others’ emotions.',
-    'I like order.',
-    'I get upset easily.',
-    'I have difficulty understanding abstract ideas.',
-    'I keep in the background.',
-    'I am not really interested in others.',
-    'I make a mess of things.',
-    'I seldom feel blue.',
-    'I do not have a good imagination.'
-  ];
-  ipip.labels = ['very<br>inaccurate', 'moderately<br>inaccurate', 'neither inaccurate <br>nor accurate', 'moderately<br>accurate', 'very<br>accurate'];
-
-
 //----------------------------------------------------------------------------
   /* experiment blocks */
 
@@ -437,6 +289,18 @@ var images = [
   var introloop = [];
   var timeline = [];
   var block6loop = []
+
+// Load and create questionnaire blocks dynamically
+async function setupQuestionnaires() {
+    const questionnaires = ['dass', 'bis', 'aor', 'bisbas', 'ipip'];
+    for (let q of questionnaires) {
+        const data = await loadQuestionnaire(`psychometrics/${q}_survey.json`);
+        const block = createQuestionBlock(data);
+        timeline.push(block);
+    }
+}
+
+
 
   // force full screen
 timeline.push({
@@ -905,147 +769,6 @@ timeline.push(demographics_block);
 		timeline.push(infer_p2_ship2);*/
 	}
 
-  // ----- questionnaires -----
-
-  // DASS-21
-  var dass_block = {
-  type: 'survey-likert',
-  preamble: dass.prompt,
-  questions: [
-    {prompt: dass.items[0], name: 'item1', labels: dass.labels, required: true},
-    {prompt: dass.items[1], name: 'item2', labels: dass.labels, required: true},
-    {prompt: dass.items[2], name: 'item3', labels: dass.labels, required: true},
-    {prompt: dass.items[3], name: 'item4', labels: dass.labels, required: true},
-    {prompt: dass.items[4], name: 'item5', labels: dass.labels, required: true},
-    {prompt: dass.items[5], name: 'item6', labels: dass.labels, required: true},
-    {prompt: dass.items[6], name: 'item7', labels: dass.labels, required: true},
-    {prompt: dass.items[7], name: 'item8', labels: dass.labels, required: true},
-    {prompt: dass.items[8], name: 'item9', labels: dass.labels, required: true},
-    {prompt: dass.items[9], name: 'item10', labels: dass.labels, required: true},
-    {prompt: dass.items[10], name: 'item11', labels: dass.labels, required: true},
-    {prompt: dass.items[11], name: 'item12', labels: dass.labels, required: true},
-    {prompt: dass.items[12], name: 'item13', labels: dass.labels, required: true},
-    {prompt: dass.items[13], name: 'item14', labels: dass.labels, required: true}
-    ],
-    scale_width: inf_slider_width,
-    post_trial_gap: iti,
-    data: {
-      phase: 'ques_dass'
-    }
-  };
-  timeline.push(dass_block);
-
-  // BIS-11
-  var bis_block = {
-  type: 'survey-likert',
-  preamble: bis.prompt,
-  questions: [
-    {prompt: bis.items[0], name: 'item1', labels: bis.labels, required: true},
-    {prompt: bis.items[1], name: 'item2', labels: bis.labels, required: true},
-    {prompt: bis.items[2], name: 'item3', labels: bis.labels, required: true},
-    {prompt: bis.items[3], name: 'item4', labels: bis.labels, required: true},
-    {prompt: bis.items[4], name: 'item5', labels: bis.labels, required: true},
-    {prompt: bis.items[5], name: 'item6', labels: bis.labels, required: true},
-    {prompt: bis.items[6], name: 'item7', labels: bis.labels, required: true},
-    {prompt: bis.items[7], name: 'item8', labels: bis.labels, required: true}
-    ],
-    scale_width: inf_slider_width,
-    post_trial_gap: iti,
-    data: {
-      phase: 'ques_bis'
-    }
-  };
-  timeline.push(bis_block);
-
-  // AOR
-  var aor_block = {
-  type: 'survey-likert',
-  preamble: aor.prompt,
-  questions: [
-    {prompt: aor.items[0], name: 'item1', labels: aor.labels, required: true},
-    {prompt: aor.items[1], name: 'item2', labels: aor.labels, required: true},
-    {prompt: aor.items[2], name: 'item3', labels: aor.labels, required: true},
-    {prompt: aor.items[3], name: 'item4', labels: aor.labels, required: true},
-    {prompt: aor.items[4], name: 'item5', labels: aor.labels, required: true},
-    {prompt: aor.items[5], name: 'item6', labels: aor.labels, required: true},
-    {prompt: aor.items[6], name: 'item7', labels: aor.labels, required: true},
-    {prompt: aor.items[7], name: 'catch', labels: aor.labels, required: true},
-    {prompt: aor.items[8], name: 'item8', labels: aor.labels, required: true},
-    {prompt: aor.items[9], name: 'item9', labels: aor.labels, required: true},
-    {prompt: aor.items[10], name: 'item10', labels: aor.labels, required: true},
-    {prompt: aor.items[11], name: 'item11', labels: aor.labels, required: true},
-    {prompt: aor.items[12], name: 'item12', labels: aor.labels, required: true}
-    ],
-    scale_width: inf_slider_width,
-    post_trial_gap: iti,
-    data: {
-      phase: 'ques_aor'
-    }
-  };
-  timeline.push(aor_block);
-
-  // BIS/BAS
-  var bisbas_block = {
-  type: 'survey-likert',
-  preamble: bisbas.prompt,
-  questions: [
-    {prompt: bisbas.items[0], name: 'item1', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[1], name: 'item2', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[2], name: 'item3', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[3], name: 'item4', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[4], name: 'item5', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[5], name: 'item6', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[6], name: 'item7', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[7], name: 'item8', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[8], name: 'item9', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[9], name: 'catch', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[10], name: 'item10', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[11], name: 'item11', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[12], name: 'item12', labels: bisbas.labels, required: true},
-    {prompt: bisbas.items[13], name: 'item13', labels: bisbas.labels, required: true}
-    ],
-    scale_width: inf_slider_width,
-    post_trial_gap: iti,
-    data: {
-      phase: 'ques_bisbas'
-    }
-  };
-  timeline.push(bisbas_block);
-
-  // Mini IPIP
-  var ipip_block = {
-  type: 'survey-likert',
-  preamble: ipip.prompt,
-  questions: [
-    {prompt: ipip.items[0], name: 'item1', labels: ipip.labels, required: true},
-    {prompt: ipip.items[1], name: 'item2', labels: ipip.labels, required: true},
-    {prompt: ipip.items[2], name: 'item3', labels: ipip.labels, required: true},
-    {prompt: ipip.items[3], name: 'item4', labels: ipip.labels, required: true},
-    {prompt: ipip.items[4], name: 'item5', labels: ipip.labels, required: true},
-    {prompt: ipip.items[5], name: 'item6', labels: ipip.labels, required: true},
-    {prompt: ipip.items[6], name: 'item7', labels: ipip.labels, required: true},
-    {prompt: ipip.items[7], name: 'item8', labels: ipip.labels, required: true},
-    {prompt: ipip.items[8], name: 'item9', labels: ipip.labels, required: true},
-    {prompt: ipip.items[9], name: 'item10', labels: ipip.labels, required: true},
-    {prompt: ipip.items[10], name: 'item11', labels: ipip.labels, required: true},
-    {prompt: ipip.items[11], name: 'item12', labels: ipip.labels, required: true},
-    {prompt: ipip.items[12], name: 'item13', labels: ipip.labels, required: true},
-    {prompt: ipip.items[13], name: 'item14', labels: ipip.labels, required: true},
-    {prompt: ipip.items[14], name: 'item15', labels: ipip.labels, required: true},
-    {prompt: ipip.items[15], name: 'item16', labels: ipip.labels, required: true},
-    {prompt: ipip.items[16], name: 'item17', labels: ipip.labels, required: true},
-    {prompt: ipip.items[17], name: 'item18', labels: ipip.labels, required: true},
-    {prompt: ipip.items[18], name: 'item19', labels: ipip.labels, required: true},
-    {prompt: ipip.items[19], name: 'item20', labels: ipip.labels, required: true}
-    ],
-    scale_width: inf_slider_width,
-    post_trial_gap: iti,
-    data: {
-      phase: 'ques_ipip'
-    }
-  };
-  timeline.push(ipip_block);
-
   // ----- HREAP-C stuff -----
 
   // debrief
@@ -1119,19 +842,21 @@ timeline.push(demographics_block);
         nBlocks_p2: nBlocks_p2
     });
 
-  	jsPsych.init({
-  		timeline: timeline,
-  		preload_images: images,
+      
+// Call setupQuestionnaires and then initialize the experiment
+setupQuestionnaires().then(() => {
+  // Initialize jsPsych
+  jsPsych.init({
+      timeline: timeline,
+      preload_images: images,
       on_finish: function() {
-		  var result = jsPsych.data.get().json();		  
-/*        jatos.submitResultData(result, function() {
-          document.write('<div id="endscreen" class="endscreen" style="width:1000px"><div class="endscreen" style="text-align:center; border:0px solid; padding:10px; font-size:120%; width:800px; float:right"><p><br><br><br>' +
-          finish_msg +
-          '</p></div></div>')
-        });*/
+          // Extract and submit result data
+          var result = jsPsych.data.get().json();		  
+          jatos.submitResultData(result, function() {
+              document.write('<div id="endscreen" class="endscreen" style="width:1000px"><div class="endscreen" style="text-align:center; border:0px solid; padding:10px; font-size:120%; width:800px; float:right"><p><br><br><br>' +
+              finish_msg +
+              '</p></div></div>');
+          });
       }
-
-	});
-
-
-//  });
+  });
+});

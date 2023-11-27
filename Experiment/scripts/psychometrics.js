@@ -25,5 +25,6 @@ function createQuestionBlock(questionnaireData) {
         }
     };
 }
+console.log("psychometrics.js loaded");
 
 export { loadQuestionnaire, createQuestionBlock };
