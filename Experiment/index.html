@@ -33,67 +33,54 @@
   <script>
 
   //----------------------------------------------------------------------------
-  /* experiment parameters */
+/* Experiment Parameters */
 
-  var groups = ["0", "1.5", "3"];
-  let group = "" + jsPsych.randomization.sampleWithReplacement(groups, 1) + "";
-  var samples = ["MTurk", "SONA", "SONA-online"];
-  let sample = samples[2];
-  var completion_code = (Math.floor(Math.random() * 99999) * 397).toString();
+// Group and Sample Selection
+var groups = ["0", "1.5", "3"];
+var group = "" + jsPsych.randomization.sampleWithReplacement(groups, 1) + "";
+var samples = ["MTurk", "SONA", "SONA-online"];
+var sample = samples[2];
+var completion_code = (Math.floor(Math.random() * 99999) * 397).toString();
 
-  // randomise position of punished planet, left-right assignment of planets and ships
-  var pun_planet_sides = [0, 1]; // position of punished planet, 0 = left (planet A), 1 = right (planet B)
-  let pun_planet_side = "" + jsPsych.randomization.sampleWithReplacement(pun_planet_sides, 1) + "";
+// Randomization
+var pun_planet_sides = [0, 1]; // Position of punished planet: 0 = left (planet A), 1 = right (planet B)
+var pun_planet_side = "" + jsPsych.randomization.sampleWithReplacement(pun_planet_sides, 1) + "";
+var stim_list = jsPsych.randomization.repeat(['img/bluep.png', 'img/orangep.png'], 1);
+var ship_list = jsPsych.randomization.repeat(['img/ship1.png', 'img/ship2.png'], 1);
 
-  let stim_list = jsPsych.randomization.repeat(['img/bluep.png','img/orangep.png'], 1);
-  let ship_list = jsPsych.randomization.repeat(['img/ship1.png','img/ship2.png'], 1);
+// Contingency Instructions
+var pun_planet = stim_list[pun_planet_side].substr(4).slice(0, -5);
+var unpun_planet = stim_list[1 - pun_planet_side].substr(4).slice(0, -5);
+var pun_ship = ship_list[pun_planet_side].substr(8).slice(0, -4);
+var unpun_ship = ship_list[1 - pun_planet_side].substr(8).slice(0, -4);
+var planet_layout = pun_planet_side === "0" ? ["left", "right"] : ["right", "left"]; // Punished, Unpunished
 
-  // contingency instructions screen
-  var pun_planet = stim_list[pun_planet_side].substr(4).slice(0,-5);
-  var unpun_planet = stim_list[1-pun_planet_side].substr(4).slice(0,-5);
-  var pun_ship = ship_list[pun_planet_side].substr(8).slice(0,-4);
-  var unpun_ship = ship_list[1-pun_planet_side].substr(8).slice(0,-4);
-  if (pun_planet_side === "0") { // left
-    var planet_layout = ["left", "right"]; // punished, unpunished
-  } else if (pun_planet_side === "1") { // right
-    var planet_layout = ["right", "left"]; // punished, unpunished
-  }
+// Global Variables
+var block_number = 0;
+var trial_number = 0;
+var points = 0;
+var continuousResp = true;
+var nBlocks_p1 = 2;
+var nBlocks_p2 = 4;
+var block_duration = 180 * 1000; // 3 minutes in milliseconds
+var iti = 1000;
+var inf_stim_height = 80;
+var inf_slider_width = 500;
+var main_stim_height = 250;
+var feedback_duration = 2500;
+var rf_ship_delay = group === "0" ? 0 : group === "1.5" ? 1500 : 3000; // Delay between outcome and ship
 
-  // define global variables
-	var block_number = 0;
-	var trial_number = 0;
-	var points = 0;
-	var continuousResp = true;
-	var nBlocks_p1 = 2;
-	var nBlocks_p2 = 4;
-  var block_duration = 180 * 1000; // in milliseconds (3 mins = 180 * 1000)
-  var iti = 1000;
-  var inf_stim_height = 80;
-  var inf_slider_width = 500;
-  var main_stim_height = 250;
-  var feedback_duration = 2500;
-  // manipulate delay between outcome and ship
-  if (group === "0") {
-    var rf_ship_delay = 0; 
-  } else if (group === "1.5") {
-    var rf_ship_delay = 1500; 
-  } else if (group === "3") {
-    var rf_ship_delay = 3000;
-  }
+var nTrialspBlk = continuousResp ? 1 : 5; // Number of trials per block
 
-	var nTrialspBlk = 5; //if continuousResp is true though, this doesn't matter
-	if (continuousResp){
-		var nTrialspBlk = 1;
-	}
-
-  var images = [
-    'img/signal1.png','img/signal2.png','img/signal3.png','img/signal4.png',
-    'img/ship1.png','img/ship2.png',
-    'img/bluep.png','img/orangep.png',
-    'img/cursor.png','img/cursordark.png', 'img/selectring.png',
-    'img/win100.png', 'img/lose.png',
-    'img/arrow.jpg', 'img/blank_lose.jpg', 'img/blank_arrow.jpg'
-  ];
+// Image Preloading
+var images = [
+  'img/signal1.png', 'img/signal2.png', 'img/signal3.png', 'img/signal4.png',
+  'img/ship1.png', 'img/ship2.png',
+  'img/bluep.png', 'img/orangep.png',
+  'img/cursor.png', 'img/cursordark.png', 'img/selectring.png',
+  'img/win100.png', 'img/lose.png',
+  'img/arrow.jpg', 'img/blank_lose.jpg', 'img/blank_arrow.jpg'
+];
 
   //----------------------------------------------------------------------------
   /* instructions text */
