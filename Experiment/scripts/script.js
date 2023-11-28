@@ -3,6 +3,8 @@ console.log("Script started");
 
 // Import functions from psychometrics.js
 import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
+import { getConsentText, getDemoText, getPretrainTexts, getInstructionCheck, getPhase2Instructions, getContingencyInstructions, getDebriefText } from './instructions.js';
+
 
 /* Experiment Parameters */
 
@@ -31,9 +33,9 @@ var block_number = 0;
 var trial_number = 0;
 var points = 0;
 var continuousResp = true;
-var nBlocks_p1 = 2;
-var nBlocks_p2 = 4;
-var block_duration = 180 * 1000; // 3 minutes in milliseconds
+var nBlocks_p1 = 1; // var nBlocks_p1 = 2; >> var nBlocks_p1 = 1; during testing
+var nBlocks_p2 = 1; // var nBlocks_p2 = 4; >> var nBlocks_p2 = 1;
+var block_duration = 1 * 1000; // 3 minutes in milliseconds // var block_duration = 180 * 1000; >> var block_duration = 1 * 1000;
 var iti = 1000;
 var inf_stim_height = 80;
 var inf_slider_width = 500;
@@ -52,131 +54,6 @@ var images = [
   'img/win100.png', 'img/lose.png',
   'img/arrow.jpg', 'img/blank_lose.jpg', 'img/blank_arrow.jpg'
 ];
-
-  //----------------------------------------------------------------------------
-  /* instructions text */
-
-const consent_text = [
-    '<p>Before you begin, please read the information sheet carefully (you can download the pdf <a href="https://jessicaleephd.files.wordpress.com/2020/07/pis_sona_3385.pdf" target="_blank">here</a>)</p>' +
-    '<br>' +
-    '<p align="center"><b>PARTICIPANT CONSENT</b></p>' +
-    '<center><img src="./img/PIS_1.jpg"></center>' +
-    '<center><img src="./img/PIS_2.jpg"></center>' +
-    '<center><img src="./img/consent.jpg"></center>' +
-    'By continuing, you are making a decision whether or not to participate. <br>  Clicking the button below indicates that, having read the information provided on the participant information sheet, you consent to the above.' +
-    '<br></p>'
-  ];
-
-  const demo_text = [
-    '<p> Gender: ' +
-    '<input type="radio" name="gender" value="male" required/> Male &nbsp; ' +
-    '<input type="radio" name="gender" value="female" required/> Female &nbsp;' +
-    '<input type="radio" name="gender" value="other" required/> Other<br>' + '<br>' +
-    '<p> Age: <input name="age" type="text" required/> </p>' + '<br>' +
-    '<p> Native language: <input name="language" type="text" required/> </p>' + '<br>'
-  ];
-
-  if (sample === "MTurk") {
-    var MTurk_insert = [
-      '<p>If anything goes wrong during the experiment, please take a screenshot and notify the requester. Do <b>not</b> press the BACK button or quit out of the program. This will make it hard for you to get paid.</p>' +
-      '<p>If you complete the task, you will get your payment no matter what. Please take your time and think about your predictions and judgements seriously. </p>'
-    ]
-  } else {
-    var MTurk_insert = '';
-  }
-
-  var ins = {};
-
-  ins.pretrain1 = [
-    '<p>WELCOME TO THE EXPERIMENT! </p>' +
-    '<p>Throughout the experiment, please read all instructions <b>carefully</b> and click on the buttons to go forward or back. You may need to scroll down on some pages. </p>' +
-    MTurk_insert +
-    '<p>Please <b>do not</b> hit refresh or the back button on your browser as you can only do the experiment ONCE.</p>' +
-    '<p>Please complete the experiment in ONE sitting in FULL SCREEN mode.</p>'
-  ];
-
-  ins.pretrain2 = [
-    '<p>In this experiment you will be playing a game over 6 blocks. </p>' +
-    '<p>In this game, you are an intergalactic trader in space. You will be situated between two planets that you can trade with. You can send a signal to each planet by clicking on them. Sometimes locals on these planets will receive the signal and be willing to trade. Each successful trade will give you points. </p>' +
-    '<p>Your goal is to have as many points as possible. </p>'
-    // '<p><b>Note:</b> Whatever you earn in-game will be converted into real money for you at the end of the experiment. The more you earn in-game, the more you make in real life. You can earn more points by trading with both planets. </p>'
-  ];
-
-  ins.pretrain3 = [
-    '<p>You can click on each of the planets as many times as you like. Just remember, the aim is to get as many points as possible! </p>' +
-    '<p>There are multiple blocks in this experiment. Between each block we will ask you some questions about each of the game elements. </p>' +
-    '<p>There are monetary prizes for participants that have high scores and accurate answers, so do your best! </p>'
-  ];
-
-  // instruction check
-  var Q0_text = "<b>Question 1:</b> The aim of the task is to:";
-  var Q0_answers = ["Get as many points as possible", "Battle the aliens on the planets"];
-  var Q1_text = "<b>Question 2:</b> Clicking on each planet will: ";
-  var Q1_answers = ["Make the planet disappear", "Sometimes result in a successful trade, earning me points"];
-  var Q2_text = "<b>Question 3:</b> There will be multiple blocks in this experiment, with questions in between each block. ";
-  var Q2_answers = ["FALSE", "TRUE"];
-  var Q3_text = "<b>Question 4:</b> The top performers with the most points at the end of the task will receive: ";
-  var Q3_answers = ["An additional monetary prize", "Extra course credit"];
-  var correctstring = '{"Q0":"' + Q0_answers[0] +
-    '","Q1":"' + Q1_answers[1] +
-    '","Q2":"' + Q2_answers[1] +
-    '","Q3":"' + Q3_answers[0] +
-    '"}';
-
-  // contingency check
-  var Q0_cont_text = "<b>Question 1:</b> Which (pirate) ship leads to attacks?";
-  var Q0_cont_answers = ['Ship Type 1', 'Ship Type 2'];
-  var Q1_cont_text = "<b>Question 2:</b> Which planet has been attracting pirate ships?";
-  var Q1_cont_answers = ['The ' + pun_planet + ' planet (' + planet_layout[0] + ' side)', 'The ' + unpun_planet + ' planet (' + planet_layout[1] + ' side)'];
-  // var Q2_cont_text = "<b>Question 3:</b> Which ship has the " + pun_planet + "  planet (" + planet_layout[0] + " side) been attracting?";
-  // var Q2_cont_answers = ["Ship Type 1", "Ship Type 2"];
-  // var Q3_cont_text = "<b>Question 4:</b> Which ship has the " + unpun_planet + "  planet (" + planet_layout[0] + " side) been attracting?";
-  // var Q3_cont_answers = ["Ship Type 1", "Ship Type 2"];
-  var correctstring_cont = '{"Q0":"' + Q0_cont_answers[pun_ship-1] +
-    '","Q1":"' + Q1_cont_answers[0] +
-    // '","Q2":"' + Q1_cont_answers[parseInt(pun_ship-1)] +
-    // '","Q3":"' + Q2_cont_answers[parseInt(unpun_ship-1)] +
-    '"}';
-
-  ins.phase2 = [
-    '<p>There have been reports of local pirates stealing from trading ships. Watch out! </p>' +
-    // '<p>In the next few blocks, trading with a planet might result in the arrival of a pirate ship. </p>' +
-    '<p>Your ship has a shield that can keep these pirates from stealing from you, but the shield will not always be available. If available, you can activate the shield by pressing the ACTIVATE button. </p>' +
-    '<p>Remember, your goal is still to have as many points as possible! </p>'
-  ];
-
-  ins.instruct = [
-    '<p>Local intel has determined where the pirates are coming from!</p>' +
-    '<br>' +
-    '<p>Your signals to the ' + pun_planet + ' planet (' + planet_layout[0] + ' side) have been attracting pirate ships (Ship: Type ' + pun_ship + '), that have been stealing your points! </p>' +
-    '<p><img src=' + stim_list[pun_planet_side] + ' height="100">' +
-    '<img src=' + 'img/arrow.jpg' + ' height="100">' + 
-    '<img src=' + ship_list[pun_planet_side] + ' height="100">' +
-    '<img src=' + 'img/arrow.jpg' + ' height="100">' + 
-    '<img src=' + 'img/lose.png' + ' height="100"></p>' + 
-    '<br><br><br>' +
-    '<p>Your signals to the ' + unpun_planet + ' planet (' + planet_layout[1] + ' side) have only been attracting friendly ships (Ship: Type ' + unpun_ship + '). </p>' +
-    '<p><img src=' + stim_list[1-pun_planet_side] + ' height="100">' +
-    '<img src=' + 'img/arrow.jpg' + ' height="100">' + 
-    '<img src=' + ship_list[1-pun_planet_side] + ' height="100">' + 
-    '<img src=' + 'img/blank_arrow.jpg' + ' height="100">' + 
-    '<img src=' + 'img/blank_lose.jpg' + ' height="100"></p>'
-  ];
-
-  ins.debrief = [
-    '<p>Please confirm that you have read the debriefing questions below: </p>' +
-    '<p><b><i>What are the research questions?</i></b> Our behaviour changes in response to experienced rewards and losses. This study asks how behaviour and accompanying beliefs change when these outcomes have varying degrees of relationship to our behaviour. </p>' +
-
-    '<p><b>	<i>How does this study extend on previous research on this topic?</i></b> Existing research suggests that stronger relationships between behaviours and outcomes will influence behaviour more. For example, behaviours that earn immediate and regular rewards are more likely to be reinforced than behaviours with a weaker relationship to rewards. We extend this by examining how dependent these changes are on beliefs and personality traits. </p>' +
-
-    '<p><b><i>What are some potential real-world implications of this research?</i></b> We learn about our environments through experience. Understanding how beliefs develop with this experience to change behaviour can help us better understand and predict adaptive/maladaptive decision-making. A potential outcome of this understanding is the development of more effective strategies to improve learning and decision-making. </p>' +
-
-    '<p><b><i>Describe a potential issue or limitation of the study (e.g., ethical, design etc.), or opportunities for future work that extends this study.</i></b> Participants might have prior experience or beliefs that would affect performance in the task. We have attempted to control for this by using a cover-story to help participants understand and engage in the task. Future studies could vary this cover-story to assess how this affects learning and decision-making in the task. </p>' +
-
-    '<p><b><i>Describe the study methodology (e.g., design, dependent/independent variables, stimulus presentation).</i></b> Participants are given the opportunity to click on “planets” to earn point rewards. In addition to this, “ships” that may or may not result in point loss are presented. The key independent variable is the programmed strength of the relationship between particular actions and point outcomes (weak vs. strong relationship). The key dependent variables are clicking behaviour, valuations of task elements, and inferred relationships between task elements. Personality traits are also assessed to observe how these relate to behaviour and beliefs. </p>' +
-
-    '<p><b><i>Further reading: </i></b> Lovibond, P.F., & Shanks, D.R. (2002). The role of awareness in Pavlovian conditioning: Empirical evidence and theoretical implications. Journal of Experimental Psychology: Animal Behavior Processes, 28, 3. </p>'
-  ];
 
   //----------------------------------------------------------------------------
   /* inference and valence checks */
@@ -336,9 +213,6 @@ const consent_text = [
   var timeline = [];
   var block6loop = []
 
-
-
-
   // force full screen
 timeline.push({
   type: 'fullscreen',
@@ -354,7 +228,7 @@ var consent_block = {
     phase: 'consent'
   }
 };
-timeline.push(consent_block);
+//timeline.push(consent_block);
 
 // demographics
 var demographics_block = {
@@ -365,7 +239,7 @@ var demographics_block = {
     phase: 'demographics'
   }
 };
-timeline.push(demographics_block);
+//timeline.push(demographics_block);
 
   // define general instructions
   var gen_ins_block = {
@@ -382,7 +256,7 @@ timeline.push(demographics_block);
       phase: 'instructions'
     }
   };
-  introloop.push(gen_ins_block);
+  //introloop.push(gen_ins_block);
 
   // define instruction check block
   var instructioncorrect = false;
@@ -569,9 +443,9 @@ timeline.push(demographics_block);
       }
     };
 
-//		timeline.push(valence_p1);
-//		timeline.push(infer_p1_A);
-//		timeline.push(infer_p1_B);
+timeline.push(valence_p1);
+timeline.push(infer_p1_A);
+timeline.push(infer_p1_B);
 	}
 
 	// ----- Phase 2 -----
@@ -589,7 +463,7 @@ timeline.push(demographics_block);
       phase: 'instructions'
     }
   };
-//  timeline.push(phase2_ins_block);
+timeline.push(phase2_ins_block);
 
 	//Generate list of shield appearances
 	// copy a planet with ship version from noship
@@ -884,20 +758,23 @@ timeline.push(demographics_block);
     console.log("Pre load");
 
 // Load and create questionnaire blocks dynamically
-async function setupQuestionnaires() {
-  const questionnaires = ['dass', 'bis', 'aor', 'bisbas', 'ipip'];
+async function setupQuestionnaires(callback) {
+  const questionnaires = ['dass'];
   for (let q of questionnaires) {
       const data = await loadQuestionnaire(`psychometrics/${q}_survey.json`);
       const block = createQuestionBlock(data);
       timeline.push(block);
   }
+  if (callback && typeof callback === 'function') {
+      callback();
+  }
 }
 
-
-console.log("Post load, pre setup");
-
 // Call setupQuestionnaires and then initialize the experiment
-setupQuestionnaires().then(() => {
+setupQuestionnaires(() => {
+  // Now add the debrief block to the timeline
+  timeline.push(debrief_block);
+
   // Initialize jsPsych
   jsPsych.init({
       timeline: timeline,
