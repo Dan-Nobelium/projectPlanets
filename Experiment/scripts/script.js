@@ -5,6 +5,8 @@ console.log("Script started");
 import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
 
 /* Experiment Parameters */
+/* Put true/false controlls here for each survey & loop to make for easier customisation
+*/
 
 // Group and Sample Selection
 var groups = ["0", "1.5", "3"];
