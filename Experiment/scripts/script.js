@@ -3,6 +3,7 @@ console.log("Script started");
 
 // Import functions from psychometrics.js
 import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
+import { instructions } from './instructions.js';
 
 /* Experiment Parameters */
 /* Put true/false controlls here for each survey & loop to make for easier customisation
@@ -42,7 +43,6 @@ var inf_slider_width = 500;
 var main_stim_height = 250;
 var feedback_duration = 2500;
 var rf_ship_delay = group === "0" ? 0 : group === "1.5" ? 1500 : 3000; // Delay between outcome and ship
-
 var nTrialspBlk = continuousResp ? 1 : 5; // Number of trials per block
 
 // Image Preloading
