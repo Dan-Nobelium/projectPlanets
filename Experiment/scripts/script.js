@@ -372,7 +372,7 @@ var demographics_block = {
     phase: 'demographics'
   }
 };
-timeline.push(demographics_block);
+//timeline.push(demographics_block);
 
   // define general instructions
   var gen_ins_block = {
