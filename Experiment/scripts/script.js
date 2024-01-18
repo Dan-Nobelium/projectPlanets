@@ -69,19 +69,19 @@ const consent_text = [
     '<br></p>'
   ];
 
-  const demo_text = [
-    `<p>Gender:
-      <input type="radio" name="gender" value="male" required />Male&nbsp;
-      <input type="radio" name="gender" value="female" required />Female&nbsp;
-      <input type="radio" name="gender" value="other" required />Other
-  
-  
-    </p>
-    <p>Age: <input name="age" type="text" required /></p>
-  
-    <p>Native language: <input name="language" type="text" required /></p>
-  `
-  ];
+const demo_text = [
+  `<p>Gender:
+    <input type="radio" name="gender" value="male" required />Male&nbsp;
+    <input type="radio" name="gender" value="female" required />Female&nbsp;
+    <input type="radio" name="gender" value="other" required />Other
+
+
+  </p>
+  <p>Age: <input name="age" type="text" required /></p>
+
+  <p>Native language: <input name="language" type="text" required /></p>
+`
+];
 
   if (sample === "MTurk") {
     var MTurk_insert = [
@@ -372,7 +372,7 @@ var demographics_block = {
     phase: 'demographics'
   }
 };
-//timeline.push(demographics_block);
+timeline.push(demographics_block);
 
   // define general instructions
   var gen_ins_block = {
