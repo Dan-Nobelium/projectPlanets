@@ -3,7 +3,6 @@ console.log("Script started");
 
 // Import functions from psychometrics.js
 import { loadQuestionnaire, createQuestionBlock } from './psychometrics.js';
-import { instructions } from './instructions.js';
 
 /* Experiment Parameters */
 /* Put true/false controlls here for each survey & loop to make for easier customisation
